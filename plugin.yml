@@ -1,0 +1,151 @@
+name: MJSystemDiamond
+description: MJ System-Plugin
+version: 2.0
+api-version: 1.13
+main: de.mindjunk.mjsystem.main.Main
+author: MindJunk
+website: https://mindjunk.de/
+softdepend: [Vault,PlaceholderAPI]
+
+commands:
+   heal:
+      description: Heilt einen Spieler
+      aliases: []
+   balance:
+      description: Zeigt den Kontostand an
+      aliases: [bal]
+   economy:
+      description: Verändert den Kontostand
+      aliases: [eco]
+   nickname:
+      description: Ändert den Nickname
+      aliases: [nn, nick]
+   home:
+      description: Teleportiert einen Spieler zu einem festgelegten Heimatpunkt
+      aliases: [h]
+   sethome:
+      description: Setzt einen Heimatpunkt auf deine aktuelle Position
+      aliases: [sh]
+   levelstorage:
+      description: Befehl für den Levelspeicher
+      aliases: [ls]
+   blockcommand:
+      description: Befehl zur Bearbeitung von BlockCommands
+      aliases: [bc]
+   commandlist:
+      description: Zeigt einen Link zur Befehlsliste im Chat!
+      aliases: [cmd, com, commands, befehle]
+   rules:
+      description: Zeigt einen Link zum Regelwerk im Chat!
+      aliases: [ru]
+   menu:
+      description: Zeigt ein CustomMenu an
+      aliases: []
+permissions:
+   mjs.*:
+      description: Erlaubt den Zugriff auf alle MJ-System Befehle!
+      children:
+         mjs.admin: true
+   mjs.admin:
+      description: Erlaubt den Zugriff auf alle Adminbefehle!
+      children:
+         mjs.basic: true
+         mjs.chat.ignorePerWorldChat: true
+         mjs.heal: true
+         mjs.heal.others: true
+         mjs.nickname.color: true
+         mjs.nickname.others: true
+         mjs.home.use.others: true
+         mjs.home.set.others: true
+         mjs.eco.show.others: true
+         mjs.eco.edit: true
+         mjs.blockcommands.create: true
+         mjs.blockcommands.remove: true
+         mjs.blockcommands.edit: true
+         mjs.lvl.big: true
+         mjs.cmdlist.edit: true
+         mjs.rules.edit: true
+         mjs.modules: true
+   mjs.basic:
+      description: Erlaubt den Zugriff auf alle Grundbefehle!
+      children:
+         mjs.interact: true
+         mjs.drop: true
+         mjs.pickup: true
+         mjs.break: true
+         mjs.place: true
+         mjs.chat: true
+         mjs.chat.color: true
+         mjs.eco.show: true
+         mjs.nickname: true
+         mjs.home.use: true
+         mjs.home.set: true
+         mjs.lvl.check: true
+         mjs.lvl.small: true
+         mjs.blockcommands.use: true
+         mjs.cmdlist.show: true
+         mjs.rules.show: true
+   mjs.interact:
+      description: Erlaubt das Interagieren mit der Umgebung
+   mjs.drop:
+      description: Erlaubt das Wegwerfen von Objekten
+   mjs.pickup:
+      description: Erlaubt das Aufnehmen von Objekten
+   mjs.break:
+      description: Erlaubt das Abbauen von Blöcken
+   mjs.place:
+      description: Erlaubt das Setzen von Blöcken
+   mjs.chat:
+      description: Erlaubt das Schreiben im Chat
+   mjs.chat.color:
+      description: Erlaubt das Nutzen von Farbe im Chat
+   mjs.chat.ignorePerWorldChat:
+      description: Spieler mit dieser Berechtigung ignorieren die PerWorldChat-Einstellung
+   mjs.eco.show:
+      description: Erlaubt das Anzeigen des eigenen Kontostandes
+   mjs.eco.show.others:
+      description: Erlaubt das Anzeigen des Kontostandes eines anderen Spielers
+   mjs.eco.edit:
+      description: Erlaubt das Ändern des Kontostandes eines Spielers
+   mjs.heal:
+      description: Erlaubt es sich zu heilen
+   mjs.heal.others:
+      description: Erlaubt es andere Spieler zu heilen
+   mjs.nickname:
+      description: Erlaubt das Ändern des eigenen Nickname
+   mjs.nickname.color:
+      description: Erlaubt das Nutzen eines bunten Nickname
+   mjs.nickname.others:
+      description: Erlaubt das Ändern des Nickname anderer Spieler
+   mjs.home.use:
+      description: Erlaubt das Teleportieren zu deinem Heimatpunkt
+   mjs.home.use.others:
+      description: Erlaubt das Teleportieren eines Spielers zu einem Heimatpunkt
+   mjs.home.set:
+      description: Erlaubt das Setzen des eigenen Heimatpunktes
+   mjs.home.set.others:
+      description: Erlaubt das Setzen des Heimatpunktes eines anderen Spielers
+   mjs.lvl.check:
+      description: Erlaubt das Anzeigen der gespeicherten Level
+   mjs.lvl.small:
+      description: Erlaubt die Nutzung des kleinen Levelspeichers
+   mjs.lvl.big:
+      description: Erlaubt die Nutzung des großen Levelspeichers
+   mjs.blockCommands.use:
+      description: Erlaubt das Benutzen von bestehenden BlockCommands
+   mjs.blockCommands.create:
+      description: Erlaubt das Erstellen von BlockCommands
+   mjs.blockCommands.remove:
+      description: Erlaubt das Entfernen von bestehenden BlockCommands
+   mjs.blockCommands.edit:
+      description: Erlaubt das Bearbeiten von bestehenden BlockCommands
+   mjs.cmdlist.show:
+      description: Erlaubt das Anzeigen der Befehlsliste
+   mjs.cmdlist.edit:
+      description: Erlaubt das Bearbeiten der Befehlsliste
+   mjs.rules.show:
+      description: Erlaubt das Anzeigen des Regelwerks
+   mjs.rules.edit:
+      description: Erlaubt das Bearbeiten des Regelwerks
+   mjs.modules:
+      description: Erlaubt das Anzeigen von Modulinformationen

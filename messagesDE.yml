@@ -1,0 +1,121 @@
+# ----------------------------------------- #
+#              MJSystem Diamond             #
+#              Messages-File DE             #
+# ----------------------------------------- #
+
+Messages:
+  prefix: "§8[§7MJ-System§8]>> "
+  enabled: "AKTIVIERT"
+  disabled: "DEAKTIVIERT"
+  deleted: "ENFERNT"
+  settings: 'Einstellungen'
+  unknownCommand: '§cUnbekannter Befehl! Tippe §6/mjs help'
+  usage: "§eVerwendung:"
+  moduleMSG: "§7Das §6{MODULE}-Modul §7ist derzeit §c{STATE}"
+  cancelFirst: '§cBitte verwende zuerst §6# §cum den vorherigen Befehl abzubrechen!'
+  inventoryFull: '§cDu hast keinen freien Platz im Inventar!'
+  playerNotFound: '§cSpieler §6{USER} §cnicht gefunden!'
+  notEnoughMoney: "§cDafür benötigst du {PRICE}§c! Du hast leider nur {BALANCE}"
+  noPerm: "§cDir fehlt die Berechtigung -> §6{PERMISSION}"
+  noNumber: '§cEingabe ist keine Zahl!{ERROR} §6<-- HIER'
+  noVault: '§cVault nicht gefunden!'
+Modules:
+  Cooldown:
+    command: '§cDieser Befehl ist noch §6{CD} §cauf Abklingzeit!'
+    block: '§cDieser Block ist noch auf Abklingzeit!'
+  Heal:
+    use1: '§7Du wurdest geheilt!'
+    use2: '§7Du hast §6{USER} §7geheilt!'
+  Economy:
+    pay: '§7Du hast §6{PRICE} §7bezahlt!'
+    show1: '§7Du hast §6{BALANCE} §7auf deinem Konto!'
+    show2: '§7Der Spieler §6{USER} §7hat gerade §6{BALANCE} §7auf dem Konto!'
+    set1: '§7Dein Kontostand wurde auf §6{BALANCE} §7gesetzt!'
+    set2: '§7Der Kontostand von §6{USER} §7wurde auf §6{BALANCE} §7gesetzt!'
+    give1: '§7Dir wurden §6{AMOUNT} §7gutgeschrieben! Neuer Kontostand: §6{BALANCE}'
+    give2: '§7Spieler §6{USER} §7wurden §6{AMOUNT} §7gutgeschrieben! Neuer Kontostand: §6{BALANCE}'
+    take1: '§7Dir wurden §6{AMOUNT} §7abgezogen! Neuer Kontostand: §6{BALANCE}'
+    take2: '§7Spieler §6{USER} §7wurden §6{AMOUNT} §7abgezogen! Neuer Kontostand: §6{BALANCE}'
+    reset1: '§7Dein Konto wurde auf das Startkapital von §6{startMoney} §7zurückgesetzt!'
+    reset2: '§7Das Konto von §6{USER} §7wurde auf das Startkapital von §6{startMoney} §7zurückgesetzt!'
+    usageBal1: '§6/bal §7um deinen Kontostand anzuzeigen!'
+    usageBal2: '§6/bal <name> §7um den Kontostand eines Spielers anzuzeigen!'
+  Nicknames:
+    use1: '§7Du hast deinen Nickname zu §6{NAME} §7geändert!'
+    use2: '§7Du hast den Nickname von §6{USER} §7zu §6{NAME} §7geändert!'
+    use3: '§7Dein Nickname wurde zu §6{NAME} §7geändert!'
+  Home:
+    pointName: 'Heimat'
+    set1: '§7Du hast deine {POINTNAME} nach{nl}§6{WORLD} §9X§7:§8{X} §9Y§7:§8{Y} §9Z§7:§8{Z} §7gesetzt!'
+    set2: '§7Du hast die {POINTNAME} von §6{USER} §7nach{nl}§6{WORLD} §9X§7:§8{X} §9Y§7:§8{Y} §9Z§7:§8{Z} §7gesetzt!'
+    set3: '§7Deine {POINTNAME} wurde nach{nl}§6{WORLD} §9X§7:§8{X} §9Y§7:§8{Y} §9Z§7:§8{Z} §7gesetzt!'
+    use1: '§7Du hast dich zu deiner {POINTNAME} teleportiert!'
+    use2: '§7Du hast dich zur {POINTNAME} von §6{USER} §7teleportiert!'
+    use3: '§7Du hast §6{USER} §7zu deiner {POINTNAME} teleportiert!'
+    use4: '§7Du hast §6{USER1} §7zur {POINTNAME} von §6{USER2} §7teleportiert!'
+    use5: '§7Du wurdest zu deiner {POINTNAME} teleportiert!'
+    use6: '§7Du wurdest zur {POINTNAME} von §6{USER2} §7teleportiert!'
+    usageUse1: '§6/h §7um dich zu deiner {POINTNAME} zu teleportieren!'
+    usageUse2: '§6/h <user> §7um dich zur {POINTNAME} eines bestimmten Spielers zu teleportieren!'
+    usageUse3: '§6/h <user> <user> §7um einen bestimmten Spieler zur {POINTNAME} eines bestimmten Spielers zu teleportieren!'
+  LevelStorage:
+    storageNameBig1: '§9Levelkristall'
+    storageNameBig2: '§9Levelkristalle'
+    storageNameSmall: '§9Levelsplitter'
+    buy: '§7Du hast 1 {STORAGENAME} §7erhalten!'
+    loadBig: '§7Du hast §6{AMOUNT1} Level §7aus deinem {STORAGE}{nl}§7extrahiert! {STORAGES}§7: §6{AMOUNT2}'
+    saveBig1: '§7Du hast §6{AMOUNT1} Level §7in deinem {STORAGE}{nl}§7gespeichert! {STORAGE} Level§7: §6{AMOUNT2}'
+    saveBig2: '§7Dein {STORAGE} §7hat das Maximum von §6{AMOUNT1}{nl}§7erreicht! §7Dein Charakter hat noch §6{AMOUNT2} Level§7!'
+    loadSmall: '§7Du hast §6{AMOUNT} Level{nl}§7aus deinem {STORAGE} §7extrahiert!'
+    saveSmall: '§7Du hast §6{AMOUNT} Level{nl}§7in deinem {STORAGE} §7gespeichert!'
+    synth: '§7Du hast §6{AMOUNT1} Level §7in §b{AMOUNT2} Diamanten §7umgewandelt! {STORAGE} Level§7: §6{AMOUNT3}'
+    noStorage: '§cDu hast keinen {STORAGE}§c!'
+    noLevelsInStorage: '§cDein {STORAGE} §cist leer!'
+    noLevelsOnChar: '§cDu hast keine Level, die du speichern kannst!'
+    notEnoughLevels: '§cDafür brauchst du §6{AMOUNT1} §cLevel!{nl}{STORAGE} Level§7: §6{AMOUNT2}'
+    smallStorageAlreadyInUse: '§cIn deinem {STORAGE} §csind bereits Level gespeichert!'
+  BlockCommands:
+    set: '§7Befehl §6{COMMAND} §7an Block §9{LOCATION} §7gebunden!'
+    useSet: '§9Klicke auf einen Block um den Befehl §6{COMMAND} §9daran zu binden. §6# §9zum Abbrechen'
+    remove: '§7Befehl an Block §9{LOCATION} §7wurde entfernt!'
+    useRemove: '§9Klicke auf einen BlockCommand um ihn zu entfernen. §6# §9zum Abbrechen'
+    addPerm: '§7Permission §6{PERMISSION} §7an Block §9{LOCATION} §7gebunden!'
+    useAddPerm: '§9Klicke auf einen BlockCommand um die Berechtigung §6{PERMISSION} §9hinzuzufügen. §6# §9zum Abbrechen'
+    removePerm: '§7Permission an Block §9{LOCATION} §7wurde enfernt!'
+    useRemovePerm: '§9Klicke auf einen BlockCommand um die Berechtigung zu entfernen. §6# §9zum Abbrechen'
+    checkPerm: '§9Benötigte Berechtigung: §6{PERMISSION}'
+    useCheckPerm: '§9Klicke auf einen BlockCommand um die benötigte Berechtigung anzuzeigen. §6# §9zum Abbrechen'
+    addSound: '§7Sound §6{SOUND} §7an Block §9{LOCATION} §7gebunden!'
+    useAddSound: '§9Klicke auf einen BlockCommand um den Sound §6{SOUND} §9hinzuzufügen. §6# §9zum Abbrechen'
+    removeSound: '§7Sound an Block §9{LOCATION} §7wurde enfernt!'
+    useRemoveSound: '§9Klicke auf einen BlockCommand um den Sound zu entfernen. §6# §9zum Abbrechen'
+    addPrice: '§7Preis §6{PRICE} §7an Block §9{LOCATION} §7gebunden!'
+    useAddPrice: '§9Klicke auf einen BlockCommand um den Preis von §6{PRICE} §9hinzuzufügen. §6# §9zum Abbrechen'
+    removePrice: '§7Preis an Block §9{LOCATION} §7wurde enfernt!'
+    useRemovePrice: '§9Klicke auf einen BlockCommand um den Preis zu entfernen. §6# §9zum Abbrechen'
+    addCooldown: '§7Cooldown §6{COOLDOWN} Sek. §7an Block §9{LOCATION} §7gebunden!'
+    useAddCooldown: '§9Klicke auf einen BlockCommand um den Cooldown von §6{COOLDOWN} §9hinzuzufügen. §6# §9zum Abbrechen'
+    checkCooldown: '§9Cooldown: §6{COOLDOWN}'
+    useCheckCooldown: '§9Klicke auf einen BlockCommand um dessen Cooldown anzuzeigen. §6# §9zum Abbrechen'
+    removeCooldown: '§7Cooldown an Block §9{LOCATION} §7wurde enfernt!'
+    useRemoveCooldown: '§9Klicke auf einen BlockCommand um den Cooldown zu entfernen. §6# §9zum Abbrechen'
+    setGlobalCooldown: '§7GlobalCooldown §7an Block §9{LOCATION} §7auf §6{GLOBALCOOLDOWN} §7gesetzt!'
+    checkPrice: '§9Kosten: §6{PRICE}'
+    useCheckPrice: '§9Klicke auf einen BlockCommand um dessen Kosten anzuzeigen. §6# §9zum Abbrechen'
+    noBlockCommand: '§cBlock ist kein BlockCommand!'
+    blockInUse: '§cBlock bereits belegt!'
+    noBlocksFound: '§7Keine Blöcke gefunden!'
+    blockFound: '§7Block gefunden!'
+    blocksFound: '§7Blöcke gefunden!'
+  Commandlist-Link:
+    commandlist: "Befehlsliste"
+    use1: "§7Du hast den §6Commandlist-Link §7zu §6{LINK} §7geändert!"
+    use2: "§6{USER} §7hat den §6Commandlist-Link §7zu §6{LINK} §7geändert!"
+    usage1: '§6/cmd §7um den Link zur Befehlsliste anzuzeigen!'
+    usage2: '§6/cmd <url> §7um den Link zur Befehlsliste zu ändern!'
+  Rules-Link:
+    rules: "Regeln"
+    use1: "§7Du hast den §6Rules-Link §7zu §6{LINK} §7geändert!"
+    use2: "§6{USER} §7hat den §6Rules-Link §7zu §6{LINK} §7geändert!"
+    usage1: '§6/ru §7um den Link zum Regelwerk anzuzeigen!'
+    usage2: '§6/ru <url> §7um den Link zum Regelwerk zu ändern!'

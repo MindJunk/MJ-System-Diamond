@@ -1,0 +1,170 @@
+# ----------------------------------------- #
+#              MJSystem Diamond             #
+#             Configuration-File            #
+# ----------------------------------------- #
+
+ConfigVersion: 2.0
+Language: "DE"
+Modules:
+  Protection:
+    enabled: true
+  Permissions:
+    enabled: true
+    defaultGroup: "SPIELER"
+  Economy:
+    enabled: true
+    sellToServer: true
+    startMoney: 5000.0
+    currencySymbol: "€"
+    currencyFormat: "DE"
+    currencyNameSingular: "Coin"
+    currencyNamePlural: "Coins"
+  Chat:
+    color: true
+    formatting: true
+    format: "§8[%group% §8|§r %player%§8]>>§r %msg%"
+    perWorldChat: false
+  Nicknames:
+    enabled: true
+    price: 5000.0
+  Home:
+    enabled: true
+    homeOnJoin: false
+    Prices:
+      use: 250.0
+      set: 5000.0
+    Cooldowns:
+      use: 60
+      set: 300
+  LevelStorage:
+    Big:
+      enabled: true
+      maxLVL: 999
+      joinStorageAmount: 1
+    Small:
+      enabled: true
+      maxLVL: 99
+    Synth:
+      enabled: true
+      levelsPerDiamond: 7
+    Prices:
+      check: 0.0
+      transferSmall: 1000.0
+      transferBig: 2500.0
+      storageBig: 10000.0
+      synth: 1000.0
+  CustomMenus:
+    enabled: true
+    displayButtonPrice: true
+  StartCommands:
+    enabled: true
+    commands:
+    - "say Der Server ist gerade gestartet!"
+    - "d=30;say Der server ist vor 30 Sekunden gestartet!"
+  LoginCommands:
+    enabled: true
+    Commands:
+    - "[p]cmd"
+  BlockCommands:
+    enabled: true
+    Prices:
+      create: 10000.0
+      remove: 1000.0
+  LeafDecay:
+    enabled: true
+    onlyInWorlds: []
+    excludeWorlds: []
+    breakDelay: 5
+    decayDelay: 2
+    oneByOne: false
+    spawnParticles: true
+    playSound: true
+  Commandlist-Link:
+    enabled: true
+    url: "www.commandlist.com"
+    changed: "NEVER"
+  Rules-Link:
+    enabled: true
+    url: "www.rules.com"
+    changed: "NEVER"
+  JoinQuitMessage:
+    enabled: true
+  Utility:
+    Cooldown:
+      enabled: true
+      chatMSG: false
+      actionBarMSG: true
+    Heal:
+      enabled: true
+      price: 1000.0
+      cooldown: 60
+    Gamemode:
+      enabled: true
+      price: 0.0
+    Enderchest:
+      enabled: true
+      price: 100.0
+    AfkDetection:
+      enabled: true
+      timeout: 15
+  AutoSave:
+    ConfigFile:
+      enabled: true
+      interval: 1800
+    UserdataFile:
+      enabled: true
+      interval: 600
+  Discord-Webhook:
+    Main:
+      enabled: false
+      main-url: ""
+      joinQuitMSG: true
+      commandBlockMSG: true
+      postSettingsOnStartup: true
+    Chat:
+      enabled: true
+      chat-url: ""
+      joinQuitMSG: true
+    ReportTickets:
+      enabled: true
+      reportTickets-url: ""
+    pingedAdminRoleID: ""
+    pingedModRoleID: ""
+Sounds:
+  Join:
+    enabled: true
+    type: BLOCK_PORTAL_TRAVEL
+    pitch: 1.0
+  Cooldown:
+    enabled: true
+    type: ENTITY_VILLAGER_NO
+    pitch: 1.0
+  Heal:
+    enabled: true
+    type: ENTITY_ZOMBIE_VILLAGER_CURE
+    pitch: 1.0
+  Home:
+    enabled: true
+    type: BLOCK_PORTAL_TRAVEL
+    pitch: 2.0
+  LevelStorage:
+    buyBig:
+      enabled: true
+      type: BLOCK_GLASS_HIT
+    saveBig:
+      enabled: true
+      type: BLOCK_GLASS_HIT
+    loadBig:
+      enabled: true
+      type: BLOCK_GLASS_BREAK
+    synth:
+      enabled: true
+      type: BLOCK_ENCHANTMENT_TABLE_USE
+  CustomMenus:
+    enabled: true
+  BlockCommands:
+    enabled: true
+    type: BLOCK_BARREL_OPEN
+  UnknownCommand:
+    enabled: true
+    type: ENTITY_VILLAGER_NO

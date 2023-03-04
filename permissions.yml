@@ -1,0 +1,37 @@
+# ----------------------------------------- #
+#              MJSystem Diamond             #
+#              Permissions-File             #
+# ----------------------------------------- #
+
+Version: 1.15
+Permissions:
+  Groups:
+    SPIELER:
+      options:
+        prefix: '§fSpieler'
+      permissionsTrue:
+      - modifyworld.*
+      - mjs.basic
+      permissionsFalse:
+      - bukkit.command.plugins
+      - bukkit.command.version
+      worlds:
+        world:
+          permissionsTrue: []
+          permissionsFalse: []
+    ADMIN:
+      options:
+        prefix: '§6Admin'
+        inherit:
+        - SPIELER
+      permissionsTrue:
+      - mjs.admin
+      permissionsFalse: []
+    OWNER:
+      options:
+        prefix: '§4Owner'
+        inherit:
+        - ADMIN
+      permissionsTrue:
+      - mjs.*
+      permissionsFalse: []

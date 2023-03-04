@@ -1,0 +1,9 @@
+# ----------------------------------------- #
+#              MJSystem Diamond             #
+#              Messages-File EN             #
+# ----------------------------------------- #
+
+Messages:
+  prefix: '§8[§7MJ-System§8]>> '
+  enabled: 'ENABLED'
+  disabled: 'DISABLED'
