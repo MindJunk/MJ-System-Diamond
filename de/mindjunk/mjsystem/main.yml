@@ -1,0 +1,197 @@
+package de.mindjunk.mjsystem.main;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
+import org.bukkit.Tag;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.type.Leaves;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import com.earth2me.essentials.Essentials;
+
+import de.mindjunk.mjsystem.economy.EconomyImplementer;
+import de.mindjunk.mjsystem.economy.VaultHook;
+import de.mindjunk.mjsystem.resources.Vars;
+import de.mindjunk.mjsystem.util.BlockLoader;
+import de.mindjunk.mjsystem.util.BlockText;
+import de.mindjunk.mjsystem.util.CooldownManager;
+import de.mindjunk.mjsystem.util.CustomMenu;
+
+@SuppressWarnings("unused")
+public class Main extends JavaPlugin implements Listener {
+	
+	public static double configVersion = 2.0;
+	
+	public static Main plugin;
+	public static Main getPlugin() {
+		return plugin;
+	}
+	public static Main getInstance;
+	
+	// Enable & Disable
+	public void onEnable() {
+		plugin = this;
+		getInstance = this;
+		if (Boot.main()) {
+			PluginManager pluginManager = getServer().getPluginManager();
+			pluginManager.registerEvents(this, this);
+			
+			getServer().getConsoleSender().sendMessage("§8[§7MJ-System§8]>> §aMJ-System Diamond erfolgreich gestartet!");
+		} else {
+			Exit.error = true;
+			this.getServer().getPluginManager().disablePlugin(this);
+		}
+	}
+	
+	public void onDisable() {
+		Exit.main();
+	}
+	
+	// Economy
+	public EconomyImplementer economyImplementer;
+	public VaultHook vaultHook;
+	
+	public void setupEconomy() {
+		economyImplementer = new EconomyImplementer();
+		vaultHook = new VaultHook();
+		vaultHook.hook();
+	}
+	
+	// CustomMenus
+	public final static HashMap<String,CustomMenu> menuList = new HashMap<>();
+	
+	// BlockCommands
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public final Map<Location, BlockText> activeBlockCommands = new HashMap();
+	public BlockLoader blockLoader = new BlockLoader(this);
+	
+	// LeafDecay
+	private final Set<String> leafDecayOnlyInWorlds = new HashSet<>();
+	private final Set<String> leafDecayExcludeWorlds = new HashSet<>();
+	public final List<Block> leafDecayScheduledBlocks = new ArrayList<>();
+	private static final List<BlockFace> leafDecayNEIGHBORS = Arrays.asList(BlockFace.UP, BlockFace.NORTH,
+			BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST, BlockFace.DOWN);
+	
+	public void loadLeafDecay() {
+		leafDecayOnlyInWorlds.addAll(getConfig().getStringList("Modules.LeafDecay.onlyInWorlds"));
+		leafDecayExcludeWorlds.addAll(getConfig().getStringList("Modules.LeafDecay.excludeWorlds"));
+	}
+	
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
+	public void onBlockBreak(BlockBreakEvent event) {
+		if (Vars.leafDecayEnabled) {
+	        onBlockRemove(event.getBlock(), Vars.leafDecayBreakDelay);
+		}
+	}
+	
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
+	public void onLeavesDecay(LeavesDecayEvent event) {
+		if (Vars.leafDecayEnabled) {
+	        onBlockRemove(event.getBlock(), Vars.leafDecayDelay);
+		}
+	}
+	
+	private void onBlockRemove(final Block oldBlock, long delay) {
+		if (!Tag.LOGS.isTagged(oldBlock.getType()) && !Tag.LEAVES.isTagged(oldBlock.getType())) {
+			return;
+		}
+		final String worldName = oldBlock.getWorld().getName();
+		if (!leafDecayOnlyInWorlds.isEmpty() && !leafDecayOnlyInWorlds.contains(worldName))
+			return;
+		if (leafDecayExcludeWorlds.contains(worldName))
+			return;
+		Collections.shuffle(leafDecayNEIGHBORS);
+		for (BlockFace neighborFace : leafDecayNEIGHBORS) {
+			final Block block = oldBlock.getRelative(neighborFace);
+			if (!Tag.LEAVES.isTagged(block.getType()))
+				continue;
+			Leaves leaves = (Leaves) block.getBlockData();
+			if (leaves.isPersistent())
+				continue;
+			if (leafDecayScheduledBlocks.contains(block))
+				continue;
+			if (Vars.leafDecayOneByOne) {
+				if (leafDecayScheduledBlocks.isEmpty()) {
+					getServer().getScheduler().runTaskLater(this, this::decayOne, delay);
+				}
+				leafDecayScheduledBlocks.add(block);
+			} else {
+				getServer().getScheduler().runTaskLater(this, () -> decay(block), delay);
+			}
+			leafDecayScheduledBlocks.add(block);
+		}
+	}
+		
+	private boolean decay(Block block) {
+		if (!leafDecayScheduledBlocks.remove(block))
+			return false;
+		if (!block.getWorld().isChunkLoaded(block.getX() >> 4, block.getZ() >> 4))
+			return false;
+		if (!Tag.LEAVES.isTagged(block.getType()))
+			return false;
+		Leaves leaves = (Leaves) block.getBlockData();
+		if (leaves.isPersistent())
+			return false;
+		if (leaves.getDistance() < 7)
+			return false;
+		LeavesDecayEvent event = new LeavesDecayEvent(block);
+		getServer().getPluginManager().callEvent(event);
+		if (event.isCancelled())
+			return false;
+		if (Vars.leafDecaySpawnParticles) {
+			block.getWorld().spawnParticle(Particle.BLOCK_DUST, block.getLocation().add(0.5, 0.5, 0.5), 8, 0.2, 0.2,
+					0.2, 0, block.getType().createBlockData());
+		}
+		if (Vars.leafDecayPlaySound) {
+			block.getWorld().playSound(block.getLocation(), Sound.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 0.05f, 1.2f);
+		}
+		block.breakNaturally();
+		return true;
+	}
+		
+	private void decayOne() {
+		boolean decayed = false;
+		do {
+			if (leafDecayScheduledBlocks.isEmpty())
+				return;
+			Block block = leafDecayScheduledBlocks.get(0);
+			decayed = decay(block);
+		} while (!decayed);
+		if (!leafDecayScheduledBlocks.isEmpty()) {
+			long delay = Vars.leafDecayDelay;
+			if (delay <= 0)
+				delay = 1L;
+			getServer().getScheduler().runTaskLater(this, this::decayOne, delay);
+		}
+	}
+	
+}
